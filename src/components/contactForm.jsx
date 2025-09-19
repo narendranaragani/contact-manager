@@ -4,7 +4,6 @@ import {useLocation} from "react-router-dom"
 
 const ContactForm = () => {
   const { contact } = useLocation().state || {};
-  console.log(contact)
   const [name, setName] = useState(contact ? contact.name : "");
   const [email, setEmail] = useState(contact ? contact.email : "");
   const [phone, setPhone] = useState(contact ? contact.phone : "");
@@ -16,8 +15,7 @@ const ContactForm = () => {
     const contactDetails = { name, email, phone };
 
     try {
-      const response = await fetch(
-        "https://contact-backend-fy18.onrender.com/api/contacts",
+      const response = await fetch("https://contact-backend-fy18.onrender.com/api/contacts",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -41,7 +39,7 @@ const ContactForm = () => {
     navigate("/")
   };
 
-  const onEditHandler = async (event) => {
+    const onEditHandler = async (event) => {
     event.preventDefault();
     const contactDetails = { name, email, phone };
     try {
@@ -121,16 +119,14 @@ const ContactForm = () => {
             </div>
             <div>
               {contact ? (
-                <button
-                  
+                <button 
                   type="submit"
                   className="w-full bg-blue-600 px-3 py-2 rounded-md mt-2 font-semibold text-white cursor-pointer"
                 >
                   Edit Contact
-                </button>
+                </button> 
               ) : (
                 <button
-                  
                   type="submit"
                   className="w-full bg-blue-600 px-3 py-2 rounded-md mt-2 font-semibold text-white cursor-pointer"
                 >
