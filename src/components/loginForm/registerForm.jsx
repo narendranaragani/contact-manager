@@ -14,11 +14,14 @@ const RegisterForm = () => {
     const userDetails = { username, email, password };
 
     try {
-      const response = await fetch("http://localhost:5002/api/users/register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(userDetails),
-      });
+      const response = await fetch(
+        "https://contact-backend-1-6hdg.onrender.com/api/users/register",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(userDetails),
+        }
+      );
       const data = await response.json();
 
       if (response.ok) {

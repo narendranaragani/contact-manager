@@ -21,14 +21,17 @@ const ContactForm = () => {
         return;
       }
 
-      const response = await fetch("http://localhost:5002/api/contacts", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify(contactDetails),
-      });
+      const response = await fetch(
+        "https://contact-backend-1-6hdg.onrender.com/api/contacts",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify(contactDetails),
+        }
+      );
 
       const data = await response.json();
 
@@ -54,7 +57,7 @@ const ContactForm = () => {
       const token = Cookies.get("jwt_token");
 
       const response = await fetch(
-        `http://localhost:5002/api/contacts/${contact._id}`,
+        `https://contact-backend-1-6hdg.onrender.com/api/contacts/${contact._id}`,
         {
           method: "PUT",
           headers: {
@@ -63,7 +66,6 @@ const ContactForm = () => {
           },
           body: JSON.stringify(contactDetails),
         }
-        
       );
       console.log(response);
       const data = await response.json();

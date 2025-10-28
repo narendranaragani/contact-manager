@@ -11,12 +11,15 @@ export default function ContactItem({ contact }) {
    const token = Cookies.get("jwt_token");
 
   function onDelete() {
-    fetch(`http://localhost:5002/api/contacts/${contact._id}`, {
-      method: "DELETE",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
+    fetch(
+      `https://contact-backend-1-6hdg.onrender.com/api/contacts/${contact._id}`,
+      {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data.message);

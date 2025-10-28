@@ -25,9 +25,12 @@ export default function ContactList() {
       }
 
       try {
-        const response = await fetch(`http://localhost:5002/api/contacts`, {
-          headers: { Authorization: `Bearer ${token}` },
-        });
+        const response = await fetch(
+          `https://contact-backend-1-6hdg.onrender.com/api/contacts`,
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        );
 
         const data = await response.json();
         const contacts = Array.isArray(data) ? data : [];
