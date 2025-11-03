@@ -22,7 +22,7 @@ const ContactForm = () => {
       }
 
       const response = await fetch(
-        "https://contact-backend-1-6hdg.onrender.com/api/contacts",
+        "http://localhost:5002/api/contacts",
         {
           method: "POST",
           headers: {
@@ -40,6 +40,7 @@ const ContactForm = () => {
         setEmail("");
         setPhone("");
         console.log("Contact created successfully");
+        alert("Contact added successfully");
         navigate("/contacts");
       } else {
         console.error("Failed to create contact:", data.message);

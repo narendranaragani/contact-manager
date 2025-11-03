@@ -6,11 +6,14 @@ const RegisterForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
 
   const navigate = useNavigate();
 
   const onSubmitEvent = async (event) => {
     event.preventDefault();
+    setIsLoading(true);
     const userDetails = { username, email, password };
 
     try {
@@ -32,6 +35,7 @@ const RegisterForm = () => {
       }
     } catch (err) {
       console.error("Error:", err);
+      setIsLoading(false);
     }
   };
 
@@ -101,9 +105,12 @@ const RegisterForm = () => {
           </div>
           <button
             type="submit"
-            className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-2xl font-semibold shadow-lg transition duration-300"
+            disabled={isLoading}
+            className={`md:w-[360px] w-[150px] mx-auto bg-blue-500 px-3 py-2 rounded-md outline-none font-semibold text-black cursor-pointer flex justify-center items-center ${
+              isLoading ? "opacity-50 cursor-not-allowed" : ""
+            }`}
           >
-            Register
+            {isLoading ? "Register in..." : "Register"}
           </button>
           <p className="text-center text-gray-400 mt-2">
             Already have an account?{" "}

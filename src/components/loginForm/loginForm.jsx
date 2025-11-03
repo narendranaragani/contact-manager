@@ -8,12 +8,14 @@ const LoginForm = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [showSubmitError, setShowSubmitError] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
 
   const onSubmitEvent = async (event) => {
     event.preventDefault();
     setShowSubmitError(false);
+    setIsLoading(true);
     setErrorMessage("");
     const token  = Cookies.get("jwt_token")
     try {
@@ -44,7 +46,8 @@ const LoginForm = () => {
       }
     } catch (error) {
       setErrorMessage("Network error. Please try again.",error);
-      setShowSubmitError(true);
+      setShowSubmitError(true); 
+      setIsLoading(false);
     }
   };
 
@@ -114,9 +117,12 @@ const LoginForm = () => {
           )}
           <button
             type="submit"
-            className="w-full bg-blue-600 text-white py-3 rounded-2xl font-semibold hover:bg-blue-700 transition duration-300 shadow-lg"
+            disabled={isLoading}
+            className={`md:w-[360px] mx-auto w-[150px] bg-blue-500 px-3 py-2 rounded-md outline-none font-semibold text-black cursor-pointer flex justify-center items-center ${
+              isLoading ? "opacity-50 cursor-not-allowed" : ""
+            }`}
           >
-            Login
+            {isLoading ? "Logging in..." : "Login"}
           </button>
         </form>
 
