@@ -22,7 +22,7 @@ const ContactForm = () => {
       }
 
       const response = await fetch(
-        "http://localhost:5002/api/contacts",
+        "https://contact-backend-1-6hdg.onrender.com/api/contacts",
         {
           method: "POST",
           headers: {
